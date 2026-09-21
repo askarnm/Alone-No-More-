@@ -1,0 +1,16 @@
+{
+  "name": "alone-no-more-backend",
+  "version": "1.0.0",
+  "description": "Backend for Alone No More companionship website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "bcryptjs": "^2.4.3",
+    "cookie-session": "^2.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
+}

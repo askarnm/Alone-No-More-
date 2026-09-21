@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alone No More — Owner dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF1E6; --panel:#FFFDF9; --ink:#3A2B27; --ink-soft:#7A6660;
+    --accent:#8E5B71; --gold:#D9A05B; --line:#E7D5C8; --error:#B3483D;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:"Karla",sans-serif; padding: 6vw;}
+  h1{font-family:"Fraunces",serif; font-weight:600;}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:24px; margin-bottom:24px; max-width:520px;}
+  input{width:100%; padding:10px 12px; border-radius:8px; border:1.5px solid var(--line); margin-bottom:12px; font-size:1rem;}
+  button{background:var(--accent); color:#fff; border:none; padding:11px 20px; border-radius:999px; font-weight:700; cursor:pointer;}
+  table{width:100%; border-collapse:collapse; margin-bottom:40px; background:var(--panel); border-radius:12px; overflow:hidden;}
+  th, td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); font-size:0.92rem;}
+  th{background:var(--bg); color:var(--ink-soft);}
+  .err{color:var(--error); font-size:0.9rem;}
+  .hidden{display:none;}
+  h2{font-family:"Fraunces",serif;}
+</style>
+</head>
+<body>
+
+<div id="loginBox" class="card">
+  <h1>Owner dashboard</h1>
+  <p>Enter your admin password to see registrations and messages.</p>
+  <input type="password" id="adminPass" placeholder="Admin password">
+  <button onclick="adminLogin()">Log in</button>
+  <p class="err" id="loginErr"></p>
+</div>
+
+<div id="dataBox" class="hidden">
+  <h1>Owner dashboard</h1>
+
+  <h2>Contact messages</h2>
+  <table id="msgTable">
+    <thead><tr><th>Name</th><th>Phone</th><th>Message</th><th>When</th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Registered customers</h2>
+  <table id="userTable">
+    <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Joined</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script>
+  async function adminLogin(){
+    var pass = document.getElementById('adminPass').value;
+    var res = await fetch('/api/admin/login', {
+      method:'POST', headers:{'Content-Type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify({password: pass})
+    });
+    var body = await res.json();
+    if(!res.ok){
+      document.getElementById('loginErr').textContent = body.error || 'Wrong password.';
+      return;
+    }
+    document.getElementById('loginBox').classList.add('hidden');
+    document.getElementById('dataBox').classList.remove('hidden');
+    loadData();
+  }
+
+  async function loadData(){
+    var res = await fetch('/api/admin/data', {credentials:'same-origin'});
+    var body = await res.json();
+    var msgBody = document.querySelector('#msgTable tbody');
+    msgBody.innerHTML = body.messages.map(function(m){
+      return '<tr><td>'+esc(m.name)+'</td><td>'+esc(m.phone)+'</td><td>'+esc(m.message||'')+'</td><td>'+esc(m.created_at)+'</td></tr>';
+    }).join('') || '<tr><td colspan="4">No messages yet.</td></tr>';
+
+    var userBody = document.querySelector('#userTable tbody');
+    userBody.innerHTML = body.users.map(function(u){
+      return '<tr><td>'+esc(u.name)+'</td><td>'+esc(u.email)+'</td><td>'+esc(u.phone)+'</td><td>'+esc(u.created_at)+'</td></tr>';
+    }).join('') || '<tr><td colspan="4">No registrations yet.</td></tr>';
+  }
+
+  function esc(s){
+    var d = document.createElement('div');
+    d.textContent = s == null ? '' : s;
+    return d.innerHTML;
+  }
+</script>
+</body>
+</html>
