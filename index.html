@@ -1,0 +1,1949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Alone No More — A visit, a chat, a little less alone</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#FAF1E6;
+  --bg-soft:#F4E4DA;
+  --panel:#FFFDF9;
+  --ink:#3A2B27;
+  --ink-soft:#7A6660;
+  --accent:#8E5B71;
+  --accent-deep:#6E4256;
+  --gold:#D9A05B;
+  --line:#E7D5C8;
+  --error:#B3483D;
+  --shadow:0 18px 40px rgba(58,43,39,.10);
+  --radius:18px;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Karla",-apple-system,"Segoe UI",sans-serif;
+}
+
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#241C1A;
+    --bg-soft:#2E2321;
+    --panel:#2B2120;
+    --ink:#F3E9E2;
+    --ink-soft:#C9B7AF;
+    --accent:#D9A2B4;
+    --accent-deep:#EFC5D3;
+    --gold:#E6B677;
+    --line:#45362F;
+    --shadow:0 18px 40px rgba(0,0,0,.35);
+  }
+}
+
+:root[data-theme="dark"]{
+  --bg:#241C1A;
+  --bg-soft:#2E2321;
+  --panel:#2B2120;
+  --ink:#F3E9E2;
+  --ink-soft:#C9B7AF;
+  --accent:#D9A2B4;
+  --accent-deep:#EFC5D3;
+  --gold:#E6B677;
+  --line:#45362F;
+  --shadow:0 18px 40px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+
+html{
+  scroll-padding-top:90px;
+}
+
+html,body{
+  height:100%;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+button,input,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+img,svg{
+  max-width:100%;
+}
+
+/* NAV */
+
+.site-nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 6vw;
+  background:rgba(250,241,230,.88);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .site-nav{
+    background:rgba(36,28,26,.88);
+  }
+}
+
+:root[data-theme="dark"] .site-nav{
+  background:rgba(36,28,26,.88);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--serif);
+  font-size:1.28rem;
+  font-weight:600;
+  color:var(--ink);
+  background:none;
+  border:0;
+}
+
+.brand-mark{
+  width:34px;
+  height:34px;
+}
+
+nav.links{
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+.navlink{
+  background:none;
+  border:0;
+  font-size:.98rem;
+  color:var(--ink-soft);
+  padding:6px 2px;
+  border-bottom:2px solid transparent;
+}
+
+.navlink:hover,
+.navlink.active{
+  color:var(--ink);
+}
+
+.navlink.active{
+  border-bottom-color:var(--gold);
+}
+
+.nav-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.btn-ghost,
+.btn-solid{
+  border-radius:999px;
+  padding:10px 20px;
+  font-weight:700;
+}
+
+.btn-ghost{
+  border:1.5px solid var(--accent);
+  background:transparent;
+  color:var(--accent-deep);
+}
+
+.btn-solid{
+  border:0;
+  background:var(--accent);
+  color:#fff8f4;
+  box-shadow:0 8px 18px rgba(142,91,113,.28);
+}
+
+.btn-solid:hover{
+  background:var(--accent-deep);
+}
+
+.btn-solid:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.menu-toggle{
+  display:none;
+  background:none;
+  border:0;
+}
+
+/* MAIN */
+
+main{
+  outline:none;
+}
+
+section{
+  padding:5vw 6vw;
+}
+
+/* HERO */
+
+.hero{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:4vw;
+  align-items:center;
+  padding-top:6vw;
+  padding-bottom:4vw;
+}
+
+.eyebrow-plain{
+  color:var(--accent-deep);
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.05rem;
+  margin:0 0 14px;
+}
+
+.hero-title{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(2.3rem,4.6vw,3.6rem);
+  line-height:1.08;
+  margin:0 0 22px;
+  max-width:12ch;
+}
+
+.lede{
+  font-size:1.12rem;
+  color:var(--ink-soft);
+  max-width:46ch;
+  margin:0 0 30px;
+}
+
+.hero-ctas{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.hero-art{
+  background:var(--bg-soft);
+  border-radius:28px;
+  padding:30px;
+  position:relative;
+}
+
+.stat-chip{
+  position:absolute;
+  background:var(--panel);
+  border-radius:14px;
+  padding:12px 16px;
+  box-shadow:var(--shadow);
+}
+
+.stat-chip strong{
+  display:block;
+  font-family:var(--serif);
+  font-size:1.3rem;
+  color:var(--accent-deep);
+}
+
+.stat-chip span{
+  font-size:.8rem;
+  color:var(--ink-soft);
+}
+
+.chip-1{
+  bottom:-18px;
+  left:-12px;
+}
+
+.chip-2{
+  top:-14px;
+  right:-10px;
+}
+
+/* HEADINGS */
+
+.section-head{
+  max-width:60ch;
+  margin:0 0 40px;
+}
+
+.section-head h2{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(1.7rem,3vw,2.3rem);
+  margin:0 0 12px;
+}
+
+.section-head p{
+  color:var(--ink-soft);
+  margin:0;
+  font-size:1.05rem;
+}
+
+/* SERVICES */
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.service-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px 24px;
+}
+
+.service-card .icon{
+  width:40px;
+  height:40px;
+  margin-bottom:18px;
+}
+
+.service-card h3{
+  font-family:var(--serif);
+  font-size:1.2rem;
+  margin:0 0 10px;
+}
+
+.service-card p{
+  color:var(--ink-soft);
+  margin:0;
+}
+
+/* STEPS */
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+.step-num{
+  font-family:var(--serif);
+  font-size:2.6rem;
+  color:var(--gold);
+  margin:0 0 8px;
+}
+
+.step h4{
+  margin:0 0 8px;
+  font-family:var(--serif);
+}
+
+.step p{
+  color:var(--ink-soft);
+}
+
+/* STORY */
+
+.story{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:5vw;
+  align-items:center;
+  background:var(--bg-soft);
+  border-radius:28px;
+}
+
+.story blockquote{
+  font-family:var(--serif);
+  font-size:clamp(1.3rem,2.2vw,1.6rem);
+  font-style:italic;
+  line-height:1.4;
+  margin:0 0 18px;
+}
+
+.story cite{
+  color:var(--ink-soft);
+}
+
+/* CONTACT */
+
+.contact-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4vw;
+}
+
+.contact-info .item{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  margin-bottom:22px;
+}
+
+.contact-info .ic{
+  width:22px;
+  height:22px;
+  color:var(--accent-deep);
+}
+
+.contact-info h4{
+  margin:0 0 4px;
+  font-family:var(--serif);
+}
+
+.contact-info p{
+  margin:0;
+  color:var(--ink-soft);
+}
+
+.card-form,
+.auth-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:30px;
+  box-shadow:var(--shadow);
+}
+
+.field{
+  margin-bottom:18px;
+}
+
+.field label{
+  display:block;
+  font-size:.88rem;
+  font-weight:600;
+  color:var(--ink-soft);
+  margin-bottom:6px;
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  padding:11px 14px;
+  border-radius:10px;
+  border:1.5px solid var(--line);
+  background:var(--bg);
+  color:var(--ink);
+}
+
+.field input:focus,
+.field textarea:focus{
+  outline:2px solid var(--accent);
+}
+
+.field textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.form-msg{
+  display:none;
+  font-size:.9rem;
+  padding:10px 14px;
+  border-radius:10px;
+  margin-bottom:16px;
+}
+
+.form-msg.show{
+  display:block;
+}
+
+.form-msg.ok{
+  background:#E8EFD9;
+  color:#3E5A22;
+}
+
+.form-msg.err{
+  background:#F6DEDA;
+  color:var(--error);
+}
+
+/* AUTH */
+
+.auth-wrap{
+  min-height:78vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:8vw 6vw;
+}
+
+.auth-card{
+  width:100%;
+  max-width:420px;
+  padding:40px 36px;
+}
+
+.auth-eyebrow{
+  font-family:var(--serif);
+  font-style:italic;
+  color:var(--accent-deep);
+  margin:0 0 6px;
+}
+
+.auth-card h2{
+  font-family:var(--serif);
+  margin:0 0 8px;
+}
+
+.auth-card .sub{
+  color:var(--ink-soft);
+  margin:0 0 28px;
+}
+
+.auth-switch{
+  text-align:center;
+  color:var(--ink-soft);
+  font-size:.92rem;
+}
+
+.auth-switch button{
+  background:none;
+  border:0;
+  color:var(--accent-deep);
+  font-weight:700;
+}
+
+.checkbox-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:-6px 0 18px;
+}
+
+.btn-block{
+  width:100%;
+  padding:13px 18px;
+  font-size:1rem;
+}
+
+/* VIEWS */
+
+.view{
+  display:none;
+}
+
+.view.active{
+  display:block;
+}
+
+/* FOOTER */
+
+footer{
+  padding:32px 6vw;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:14px;
+  color:var(--ink-soft);
+  font-size:.88rem;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  nav.links{
+    position:fixed;
+    top:68px;
+    left:0;
+    right:0;
+    background:var(--panel);
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    border-bottom:1px solid var(--line);
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+  }
+
+  nav.links.open{
+    max-height:320px;
+  }
+
+  nav.links button{
+    width:100%;
+    padding:16px 6vw;
+    text-align:left;
+    border-bottom:1px solid var(--line);
+  }
+
+  .desktop-only{
+    display:none;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .hero,
+  .story,
+  .contact-wrap{
+    grid-template-columns:1fr;
+  }
+
+  .services-grid,
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+  .story{
+    padding:6vw;
+  }
+
+  .story > div{
+    padding:0 !important;
+  }
+
+  .chip-1,
+  .chip-2{
+    position:static;
+    display:inline-block;
+    margin:10px 10px 0 0;
+  }
+
+  .hero-art{
+    display:flex;
+    flex-wrap:wrap;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-nav">
+
+  <button class="brand" onclick="showView('home')" aria-label="Alone No More home">
+
+    <svg class="brand-mark" viewBox="0 0 40 40" fill="none">
+      <circle cx="20" cy="20" r="19"
+        fill="var(--bg-soft)"
+        stroke="var(--gold)"
+        stroke-width="1.4"/>
+
+      <path d="M13 24c0-4.5 3.2-8 7-8s7 3.5 7 8"
+        stroke="var(--accent-deep)"
+        stroke-width="1.8"
+        stroke-linecap="round"/>
+
+      <circle cx="15.5" cy="15.5" r="2.6"
+        fill="var(--accent-deep)"/>
+
+      <circle cx="24.5" cy="15.5" r="2.6"
+        fill="var(--gold)"/>
+    </svg>
+
+    Alone No More
+  </button>
+
+  <button class="menu-toggle"
+    onclick="toggleMenu()"
+    aria-label="Toggle menu">
+
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+      <path d="M4 6h16M4 12h16M4 18h16"
+        stroke="var(--ink)"
+        stroke-width="2"
+        stroke-linecap="round"/>
+    </svg>
+
+  </button>
+
+  <nav class="links" id="navLinks">
+
+    <button class="navlink active"
+      onclick="showView('home')">
+      Home
+    </button>
+
+    <button class="navlink"
+      onclick="jumpTo('services')">
+      Services
+    </button>
+
+    <button class="navlink"
+      onclick="jumpTo('contact')">
+      Contact
+    </button>
+
+  </nav>
+
+  <div class="nav-actions desktop-only">
+
+    <button class="btn-ghost"
+      onclick="showView('login')">
+      Log in
+    </button>
+
+    <button class="btn-solid"
+      onclick="showView('register')">
+      Register
+    </button>
+
+  </div>
+
+</header>
+
+
+<main id="mainContent" tabindex="-1">
+
+<!-- ================= HOME ================= -->
+
+<div class="view active" id="view-home">
+
+<section class="hero">
+
+<div>
+
+<p class="eyebrow-plain">
+A friendly visit, whenever you need one
+</p>
+
+<h1 class="hero-title">
+Nobody should spend their days alone.
+</h1>
+
+<p class="lede">
+I visit people who'd like some company — a cup of tea,
+a real conversation, a familiar face at the door.
+Simple, warm, and there when you need it.
+</p>
+
+<div class="hero-ctas">
+
+<button class="btn-solid"
+onclick="jumpTo('contact')">
+Get in touch
+</button>
+
+<button class="btn-ghost"
+onclick="jumpTo('services')">
+See how it works
+</button>
+
+</div>
+
+</div>
+
+
+<div class="hero-art">
+
+<svg viewBox="0 0 360 300">
+
+<rect x="30" y="70"
+width="300"
+height="190"
+rx="20"
+fill="var(--panel)"/>
+
+<circle cx="130" cy="150"
+r="34"
+fill="var(--gold)"
+opacity=".35"/>
+
+<circle cx="120" cy="140"
+r="26"
+fill="var(--accent)"/>
+
+<rect x="98" y="165"
+width="44"
+height="60"
+rx="18"
+fill="var(--accent-deep)"/>
+
+<circle cx="240" cy="150"
+r="34"
+fill="var(--accent)"
+opacity=".25"/>
+
+<circle cx="248" cy="138"
+r="24"
+fill="var(--gold)"/>
+
+<rect x="226" y="160"
+width="44"
+height="60"
+rx="18"
+fill="var(--gold)"
+opacity=".9"/>
+
+<rect x="150" y="205"
+width="60"
+height="8"
+rx="4"
+fill="var(--bg-soft)"/>
+
+<circle cx="180" cy="190"
+r="10"
+fill="var(--panel)"
+stroke="var(--line)"
+stroke-width="2"/>
+
+</svg>
+
+<div class="stat-chip chip-1">
+<strong>1:1</strong>
+<span>Just you and me, every visit</span>
+</div>
+
+<div class="stat-chip chip-2">
+<strong>No rush</strong>
+<span>Real conversation, real time</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section id="services">
+
+<div class="section-head">
+
+<h2>What I can offer</h2>
+
+<p>
+Small, human things that make a big difference to a quiet day.
+</p>
+
+</div>
+
+
+<div class="services-grid">
+
+<div class="service-card">
+
+<div class="icon">💬</div>
+
+<h3>A visit and a chat</h3>
+
+<p>
+I come by, sit down, and we talk about whatever's on your mind —
+old stories, today's news, or nothing in particular.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<div class="icon">☕</div>
+
+<h3>Tea and company</h3>
+
+<p>
+A slow cup of tea, shared quietly.
+Sometimes the best company doesn't need much talking at all.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<div class="icon">🚶</div>
+
+<h3>A walk together</h3>
+
+<p>
+If you're up for it, a short walk outside —
+fresh air and company, at whatever pace suits you.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<div class="icon">📝</div>
+
+<h3>Help around small tasks</h3>
+
+<p>
+Reading letters, sorting photos, writing a note —
+quiet little tasks that are nicer with someone beside you.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<div class="icon">❤️</div>
+
+<h3>Someone who checks in</h3>
+
+<p>
+A regular visit, on a schedule that suits you —
+so there's always a familiar visit to look forward to.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<div class="icon">⏰</div>
+
+<h3>Whatever time you have</h3>
+
+<p>
+A short half hour or a whole afternoon —
+the visit fits around you, not the other way round.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section>
+
+<div class="section-head">
+
+<h2>How a visit works</h2>
+
+<p>
+No forms to fill in, no waiting rooms — just three simple steps.
+</p>
+
+</div>
+
+<div class="steps">
+
+<div class="step">
+
+<p class="step-num">1</p>
+
+<h4>You reach out</h4>
+
+<p>
+Send a message or call with a bit about what you'd like —
+a chat, a walk, or just company.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<p class="step-num">2</p>
+
+<h4>We agree on a time</h4>
+
+<p>
+I'll call you back to find a day and time that suits you,
+no pressure and no rush.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<p class="step-num">3</p>
+
+<h4>I visit</h4>
+
+<p>
+I turn up, we spend the time together,
+and you decide if you'd like another visit.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STORY -->
+
+<section>
+
+<div class="story">
+
+<div>
+
+<svg viewBox="0 0 200 220">
+
+<circle cx="100" cy="80"
+r="55"
+fill="var(--panel)"/>
+
+<circle cx="100" cy="65"
+r="24"
+fill="var(--gold)"/>
+
+<rect x="60" y="95"
+width="80"
+height="70"
+rx="26"
+fill="var(--accent)"/>
+
+</svg>
+
+</div>
+
+
+<div>
+
+<blockquote>
+"Some days the only voice I heard was the television —
+until the visits started. Now Tuesdays are the day
+I look forward to all week."
+</blockquote>
+
+<cite>
+— A regular visit, in her own words
+</cite>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<div class="section-head">
+
+<h2>Get in touch</h2>
+
+<p>
+Reach out directly, or send a short message below
+and I'll call you back.
+</p>
+
+</div>
+
+
+<div class="contact-wrap">
+
+<div class="contact-info">
+
+<div class="item">
+
+<div class="ic">📞</div>
+
+<div>
+<h4>Call or text</h4>
+
+<p>
++94 71 098 4034 — WhatsApp available most days,
+9am–6pm
+</p>
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="ic">✉️</div>
+
+<div>
+<h4>Email</h4>
+
+<p>
+muhamedaskar010@gmail.com
+</p>
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="ic">📍</div>
+
+<div>
+<h4>Visiting area</h4>
+
+<p>Sri Lanka</p>
+</div>
+
+</div>
+
+</div>
+
+
+<form class="card-form"
+onsubmit="return handleContact(event)">
+
+<div class="form-msg"
+id="contactMsg"></div>
+
+
+<div class="field">
+
+<label for="cName">
+Your name
+</label>
+
+<input
+id="cName"
+type="text"
+required>
+
+</div>
+
+
+<div class="field">
+
+<label for="cPhone">
+Phone number
+</label>
+
+<input
+id="cPhone"
+type="tel"
+required>
+
+</div>
+
+
+<div class="field">
+
+<label for="cMsg">
+What would help you most?
+</label>
+
+<textarea
+id="cMsg"
+placeholder="e.g. I'd like a weekly visit for tea and a chat">
+</textarea>
+
+</div>
+
+
+<button
+class="btn-solid btn-block"
+type="submit">
+
+Send message
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- ================= LOGIN ================= -->
+
+<div class="view" id="view-login">
+
+<div class="auth-wrap">
+
+<div class="auth-card">
+
+<p class="auth-eyebrow">
+Welcome back
+</p>
+
+<h2>
+Log in
+</h2>
+
+<p class="sub">
+Log in to see your visits and messages.
+</p>
+
+<div
+class="form-msg"
+id="loginMsg">
+</div>
+
+
+<form onsubmit="return handleLogin(event)">
+
+<div class="field">
+
+<label for="lEmail">
+Email
+</label>
+
+<input
+id="lEmail"
+type="email"
+autocomplete="email"
+required>
+
+</div>
+
+
+<div class="field">
+
+<label for="lPass">
+Password
+</label>
+
+<input
+id="lPass"
+type="password"
+autocomplete="current-password"
+required>
+
+</div>
+
+
+<div class="checkbox-row">
+
+<input
+type="checkbox"
+id="lRemember">
+
+<label for="lRemember">
+Remember me
+</label>
+
+</div>
+
+
+<button
+class="btn-solid btn-block"
+type="submit">
+
+Log in
+
+</button>
+
+</form>
+
+
+<p class="auth-switch">
+
+New here?
+
+<button onclick="showView('register')">
+Create an account
+</button>
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= REGISTER ================= -->
+
+<div class="view" id="view-register">
+
+<div class="auth-wrap">
+
+<div class="auth-card">
+
+<p class="auth-eyebrow">
+Let's get you set up
+</p>
+
+<h2>
+Create an account
+</h2>
+
+<p class="sub">
+Register once, then reach me anytime for a visit.
+</p>
+
+<div
+class="form-msg"
+id="registerMsg">
+</div>
+
+
+<form onsubmit="return handleRegister(event)">
+
+<div class="field">
+
+<label for="rName">
+Full name
+</label>
+
+<input
+id="rName"
+type="text"
+autocomplete="name"
+required>
+
+</div>
+
+
+<div class="field">
+
+<label for="rEmail">
+Email
+</label>
+
+<input
+id="rEmail"
+type="email"
+autocomplete="email"
+required>
+
+</div>
+
+
+<div class="field">
+
+<label for="rPhone">
+Phone number
+</label>
+
+<input
+id="rPhone"
+type="tel"
+autocomplete="tel"
+required>
+
+</div>
+
+
+<div class="field">
+
+<label for="rPass">
+Password
+</label>
+
+<input
+id="rPass"
+type="password"
+autocomplete="new-password"
+minlength="6"
+required>
+
+</div>
+
+
+<button
+class="btn-solid btn-block"
+type="submit">
+
+Create account
+
+</button>
+
+</form>
+
+
+<p class="auth-switch">
+
+Already registered?
+
+<button onclick="showView('login')">
+Log in
+</button>
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+
+<footer>
+
+<span>
+© 2026 Alone No More. A little company, whenever you need it.
+</span>
+
+<span>
+Colombo, Sri Lanka
+</span>
+
+</footer>
+
+
+<!-- ========================================================= -->
+<!-- FIREBASE -->
+<!-- ========================================================= -->
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  setPersistence,
+  browserLocalPersistence,
+  browserSessionPersistence
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  addDoc,
+  collection,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+
+/* =========================================================
+   1. YOUR FIREBASE CONFIG
+   ========================================================= */
+
+const firebaseConfig = {
+
+  apiKey: "YOUR_API_KEY",
+
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+
+  projectId: "YOUR_PROJECT_ID",
+
+  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
+
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+
+  appId: "YOUR_APP_ID"
+
+};
+
+
+/* =========================================================
+   2. INITIALIZE FIREBASE
+   ========================================================= */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+/* =========================================================
+   3. SHOW MESSAGE
+   ========================================================= */
+
+function showMsg(id,text,ok){
+
+  const el=document.getElementById(id);
+
+  if(!el) return;
+
+  el.textContent=text;
+
+  el.className=
+    "form-msg show " +
+    (ok ? "ok" : "err");
+}
+
+
+/* =========================================================
+   4. FIREBASE ERROR MESSAGE
+   ========================================================= */
+
+function firebaseError(error){
+
+  switch(error.code){
+
+    case "auth/email-already-in-use":
+      return "This email address is already registered.";
+
+    case "auth/invalid-email":
+      return "Please enter a valid email address.";
+
+    case "auth/weak-password":
+      return "Password is too weak. Please use at least 6 characters.";
+
+    case "auth/invalid-credential":
+      return "Incorrect email or password.";
+
+    case "auth/user-not-found":
+      return "No account was found with this email.";
+
+    case "auth/wrong-password":
+      return "Incorrect password.";
+
+    case "auth/too-many-requests":
+      return "Too many attempts. Please try again later.";
+
+    case "auth/network-request-failed":
+      return "Network error. Please check your internet connection.";
+
+    default:
+      return error.message || "Something went wrong. Please try again.";
+  }
+
+}
+
+
+/* =========================================================
+   5. REGISTER
+   ========================================================= */
+
+window.handleRegister = async function(e){
+
+  e.preventDefault();
+
+  const name =
+    document.getElementById("rName").value.trim();
+
+  const email =
+    document.getElementById("rEmail").value.trim();
+
+  const phone =
+    document.getElementById("rPhone").value.trim();
+
+  const password =
+    document.getElementById("rPass").value;
+
+  const button =
+    e.target.querySelector("button[type='submit']");
+
+  button.disabled=true;
+
+  try{
+
+    /*
+      Create Firebase Authentication account
+    */
+
+    const userCredential =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+    const user =
+      userCredential.user;
+
+
+    /*
+      Save additional user information
+      inside Firestore
+    */
+
+    await setDoc(
+      doc(db,"users",user.uid),
+      {
+
+        uid:user.uid,
+
+        name:name,
+
+        email:email,
+
+        phone:phone,
+
+        createdAt:serverTimestamp()
+
+      }
+    );
+
+
+    showMsg(
+      "registerMsg",
+      "Welcome, " +
+      name +
+      "! Your account has been created.",
+      true
+    );
+
+
+    e.target.reset();
+
+
+    setTimeout(function(){
+
+      showView("home");
+
+    },1200);
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMsg(
+      "registerMsg",
+      firebaseError(error),
+      false
+    );
+
+  }finally{
+
+    button.disabled=false;
+
+  }
+
+  return false;
+
+};
+
+
+/* =========================================================
+   6. LOGIN
+   ========================================================= */
+
+window.handleLogin = async function(e){
+
+  e.preventDefault();
+
+  const email =
+    document.getElementById("lEmail").value.trim();
+
+  const password =
+    document.getElementById("lPass").value;
+
+  const remember =
+    document.getElementById("lRemember").checked;
+
+  const button =
+    e.target.querySelector("button[type='submit']");
+
+  button.disabled=true;
+
+
+  try{
+
+    /*
+      Remember me
+    */
+
+    await setPersistence(
+      auth,
+      remember
+        ? browserLocalPersistence
+        : browserSessionPersistence
+    );
+
+
+    /*
+      Firebase login
+    */
+
+    const userCredential =
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+
+    const user =
+      userCredential.user;
+
+
+    showMsg(
+      "loginMsg",
+      "Welcome back!",
+      true
+    );
+
+
+    console.log(
+      "Logged in user:",
+      user.uid
+    );
+
+
+    setTimeout(function(){
+
+      showView("home");
+
+    },900);
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMsg(
+      "loginMsg",
+      firebaseError(error),
+      false
+    );
+
+  }finally{
+
+    button.disabled=false;
+
+  }
+
+  return false;
+
+};
+
+
+/* =========================================================
+   7. CONTACT FORM
+   ========================================================= */
+
+window.handleContact = async function(e){
+
+  e.preventDefault();
+
+  const name =
+    document.getElementById("cName").value.trim();
+
+  const phone =
+    document.getElementById("cPhone").value.trim();
+
+  const message =
+    document.getElementById("cMsg").value.trim();
+
+
+  const button =
+    e.target.querySelector("button[type='submit']");
+
+  button.disabled=true;
+
+
+  try{
+
+    /*
+      Save contact message in Firestore
+    */
+
+    await addDoc(
+      collection(db,"contacts"),
+      {
+
+        name:name,
+
+        phone:phone,
+
+        message:message,
+
+        status:"new",
+
+        createdAt:serverTimestamp()
+
+      }
+    );
+
+
+    showMsg(
+      "contactMsg",
+      "Thanks, " +
+      name +
+      " — your message has been sent. I'll call you back soon.",
+      true
+    );
+
+
+    e.target.reset();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMsg(
+      "contactMsg",
+      "Could not send your message. Please try again.",
+      false
+    );
+
+  }finally{
+
+    button.disabled=false;
+
+  }
+
+  return false;
+
+};
+
+
+/* =========================================================
+   8. LOGOUT FUNCTION
+   ========================================================= */
+
+window.logoutUser = async function(){
+
+  try{
+
+    await signOut(auth);
+
+    console.log("User logged out");
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+};
+
+
+/* =========================================================
+   9. CHECK LOGIN STATUS
+   ========================================================= */
+
+onAuthStateChanged(auth,function(user){
+
+  if(user){
+
+    console.log(
+      "Firebase user logged in:",
+      user.email
+    );
+
+  }else{
+
+    console.log(
+      "No Firebase user logged in."
+    );
+
+  }
+
+});
+
+
+/* =========================================================
+   10. PAGE NAVIGATION
+   ========================================================= */
+
+window.showView=function(name){
+
+  document
+    .querySelectorAll(".view")
+    .forEach(function(v){
+
+      v.classList.remove("active");
+
+    });
+
+
+  const target =
+    document.getElementById(
+      "view-" + name
+    );
+
+
+  if(target){
+
+    target.classList.add("active");
+
+  }
+
+
+  document
+    .querySelectorAll(".navlink")
+    .forEach(function(button){
+
+      button.classList.remove("active");
+
+    });
+
+
+  if(name==="home"){
+
+    const homeButton =
+      document.querySelector(
+        ".navlink"
+      );
+
+    if(homeButton){
+
+      homeButton.classList.add("active");
+
+    }
+
+  }
+
+
+  closeMenu();
+
+  window.scrollTo({
+    top:0,
+    behavior:"instant"
+  });
+
+};
+
+
+window.jumpTo=function(sectionId){
+
+  showView("home");
+
+  requestAnimationFrame(function(){
+
+    const element =
+      document.getElementById(sectionId);
+
+    if(element){
+
+      element.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+    }
+
+  });
+
+};
+
+
+window.toggleMenu=function(){
+
+  document
+    .getElementById("navLinks")
+    .classList.toggle("open");
+
+};
+
+
+window.closeMenu=function(){
+
+  document
+    .getElementById("navLinks")
+    .classList.remove("open");
+
+};
+
+</script>
+
+</body>
+</html>
