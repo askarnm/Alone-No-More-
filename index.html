@@ -1432,19 +1432,55 @@ from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 const firebaseConfig = {
 
-  apiKey: "YOUR_API_KEY",
+  apiKey: "FQy4HArVdBbZ87AHrbfdhSXRgyE5NUbrh6GaL8enMUeh",
 
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  authDomain: "alonenomore-cd7ed.firebaseapp.com",
 
-  projectId: "YOUR_PROJECT_ID",
+  projectId: "alonenomore-cd7ed",
 
-  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
+  storageBucket: "alonenomore-cd7ed.firebasestorage.app",
 
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  messagingSenderId: "373327696970",
 
-  appId: "YOUR_APP_ID"
+  appId: "1:373327696970:web:f754e3edad5e2761b742b3"
 
 };
+
+  const db = firebase.firestore();
+  const form = document.getElementById("suggestionForm"); 
+
+  form.addEventListener("submit", async (e) => {
+
+e.preventDefault();
+
+const nameVal = document.getElementById("name").value.trim();
+
+const mobileval = document.getElementById("mobile").value.trim();
+
+const qualificationVal = document.getElementById("qualification").value.trim();
+
+const cityVal = document.getElementById("city").value.trim();
+
+const topicval = document.getElementById("topic").value.trim();
+
+T
+
+if (!nameVal || !mobileval || !cityVal || !topicVal) { alert("Please fill all required fields");
+
+return;
+
+}
+
+    try {
+await db.collection("videoSuggestions").add({
+name: nameval,
+mobile: mobiloval,
+qualification: qualificationVal ||
+city: cityval,
+topic: topicval,
+createdAt: firebase.firestore.FieldValue.ser se.firestore.FieldValue.serverTimestamp()
+});
+
 
 
 /* =========================================================
